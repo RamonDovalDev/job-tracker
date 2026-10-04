@@ -1,3 +1,4 @@
+import CreateBoardForm from "@/components/dashboard/CreateBoardForm";
 import JobApplicationDialog from "@/components/dashboard/JobApplicationDialog";
 import KanbanBoard from "@/components/dashboard/KanbanBoard";
 import { getOrCreateBoard } from "@/lib/actions/board-actions";
@@ -17,7 +18,13 @@ const DashboardPage = async () => {
 
   const data = await getOrCreateBoard();
   if (!data) {
-    return <div>No board data</div>;
+    return (
+      <main className="min-h-screen bg-slate-50 pt-24 px-4 py-8 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex justify-center">
+          <CreateBoardForm />
+        </div>
+      </main>
+    );
   }
 
   const applications = await getJobApplications();
